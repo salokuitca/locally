@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
         shadowRadius: 2.62,
         elevation: 4,
         borderRadius: 15,
-        padding: 15,
-        margin: 5,
+        padding: 16,
+        margin: 8,
         backgroundColor: Colors.secondaryColor,
         
     }

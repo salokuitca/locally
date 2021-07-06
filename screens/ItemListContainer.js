@@ -3,14 +3,14 @@ import {StyleSheet, View, Text, Button} from 'react-native';
 import ItemList from '../components/ItemList';
 import Colors from '../constants/colors';
 
-const ItemListContainer = ({irTienda}) => {
+const ItemListContainer = ({navigation}) => {
    
     return (
         <>
         {/* Container de la lista de tiendas */}
         <View style={styles.screen}>
             
-            <ItemList irTienda={irTienda}/>
+            <ItemList navigation={navigation}/>
         </View>
         </>
     )
@@ -18,7 +18,6 @@ const ItemListContainer = ({irTienda}) => {
 
 const styles= StyleSheet.create({
     screen: {
-        flex: 1,
         width: "100%",
         backgroundColor: Colors.backgroundGeneral,
     }

@@ -2,12 +2,9 @@ import React from 'react';
 import {StyleSheet, View, Text, Image, ScrollView, TouchableWithoutFeedback} from 'react-native';
 import Card from './Card';
 
-const TiendaDetail = ({irListaTiendas}) => {
+const TiendaDetail = ({navigation}) => {
 
-    // Función para volver a la lista de tiendas cuano se presiona la X
-const handleIrListaTiendas = (valor) => {
-    irListaTiendas(valor);
-}
+  
     return (
         <>
         {/* Para generar el scroll */}
@@ -31,10 +28,10 @@ const handleIrListaTiendas = (valor) => {
                             <Text style={styles.textSubtitulo}>Plantitas ideales para regalar</Text>
                         </View>
                     </View>
-                    <TouchableWithoutFeedback onPress={()=> handleIrListaTiendas(0)}>
+                    <TouchableWithoutFeedback onPress={()=> {}}>
                     <View>
                         <View>
-                            <Text >X</Text>
+                        <Image source={require('../assets/images/iconClose.png')} style={styles.iconoClose}/>
                         </View>
                         <View>
                             <Text></Text>
@@ -77,11 +74,15 @@ const handleIrListaTiendas = (valor) => {
             <Card>
                 <Text style={styles.textPromociones}>Productos destacados</Text>
                 <View style={styles.cardProductosDestacados}>
+                    <TouchableWithoutFeedback onPress={() => {
+                        navigation.navigate('ItemDetail')
+                    }}>
                     <View style={styles.imageProductosDestacadosContainer}>
                         <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
                         style={styles.imageProductosDestacados}
                         />
                     </View>
+                    </TouchableWithoutFeedback>
                     <View style={styles.imageProductosDestacadosContainer}>
                         <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
                         style={styles.imageProductosDestacados}
@@ -136,7 +137,7 @@ const handleIrListaTiendas = (valor) => {
 
 const styles= StyleSheet.create({
     card: {
-        marginTop: 100,
+        marginTop: 10,
     },
     containerSuperiorCard: {
         flexDirection: 'row',
@@ -147,6 +148,10 @@ const styles= StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 100
+    },
+    iconoClose:{
+        height: 20,
+        width: 20
     },
     textName: {
         fontFamily: 'roboto-medium',

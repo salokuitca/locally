@@ -5,13 +5,9 @@ import Card from './Card';
 import Data from '../constants/data';
 
 // Función para ir a la tienda cuando se presiona una card
-const ItemList = ({irTienda}) => {
+const ItemList = ({navigation}) => {
 
-    const handleIrTienda = (valor) => {
-        irTienda(valor);
-       
-        
-    }
+    
 
     return (
         <>
@@ -26,7 +22,9 @@ const ItemList = ({irTienda}) => {
                         <>
                         
                         <Card >
-                        <TouchableWithoutFeedback onPress={()=>handleIrTienda(1)}>
+                        <TouchableWithoutFeedback onPress={()=> {
+                            navigation.navigate('TiendaDetail')
+                        }}>
                             <View style={styles.card}>
                                 <View>
                                     <Image source={{uri: 'https://dummyimage.com/50x50/000/fff'}}
@@ -66,8 +64,7 @@ const ItemList = ({irTienda}) => {
 
 const styles = StyleSheet.create ({
     container: {
-        marginTop: 150,
-       
+        height:'100%'
     },
     card: {
         flexDirection: 'row',

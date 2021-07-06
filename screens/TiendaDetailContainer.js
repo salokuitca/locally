@@ -3,12 +3,13 @@ import { StyleSheet, View, Text } from 'react-native';
 import TiendaDetail from '../components/TiendaDetail';
 import Colors from '../constants/colors';
 
-const TiendaDetailContainer = ({irListaTiendas}) => {
+const TiendaDetailContainer = ({navigation}) => {
     return (
         <>
         {/* Container de la Tienda */}
-        <View style={styles.screen}>
-        <TiendaDetail irListaTiendas={irListaTiendas}></TiendaDetail>
+        <View style={styles.screen}>  
+        
+        <TiendaDetail navigation={navigation}/>
         </View>
         </>
     )

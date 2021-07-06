@@ -1,13 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import {useFonts} from 'expo-font';
-import ItemListContainer from './screens/ItemListContainer';
-import TiendaDetailContainer from './screens/TiendaDetailContainer';
+import TiendaNavigator from './navigation/TiendaNavigator';
+
 
 
 export default function App() { 
-  const [pantallaRenderizada, setPantallaRenderizada] = useState ('');
+  
 
   // Traer fuentes
   const [dataLoaded] = useFonts({
@@ -16,11 +15,6 @@ export default function App() {
     'roboto-regular' : require ('./assets/fonts/Roboto-Regular.ttf'),
   })
 
-  // Renderizado opcional con operador ternario
-  const render = pantallaRenderizada
-  ?<TiendaDetailContainer irListaTiendas={setPantallaRenderizada}></TiendaDetailContainer>
-  :<ItemListContainer irTienda={setPantallaRenderizada}/>
-
   // Para traer fuentes
   if (!dataLoaded) {
     return null;
@@ -28,20 +22,10 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-
-      {/* Renderiza según resultado del operador ternario */}
-      {render}
-      
-    </View>
+      <TiendaNavigator/>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  
 });
