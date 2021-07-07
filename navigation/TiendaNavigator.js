@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ItemListContainer from '../screens/ItemListContainer';
 import TiendaDetailContainer from '../screens/TiendaDetailContainer';
 import ItemDetailContainer from '../screens/ItemDetailContainer';
+import AllProducts from '../components/AllProducts';
 
 const Stack = createStackNavigator();
 
@@ -12,7 +13,9 @@ const TiendaNavigator = () => (
         <Stack.Navigator initialRouteName="ItemList">
             <Stack.Screen name="ItemList" component={ItemListContainer}/>        
             <Stack.Screen name="TiendaDetail" component={TiendaDetailContainer}/>        
-            <Stack.Screen name="ItemDetail" component={ItemDetailContainer}/>        
+            <Stack.Screen name="ItemDetail" component={ItemDetailContainer}/>
+            <Stack.Screen name="AllProducts" component={AllProducts}/>
+                    
         </Stack.Navigator>
     </NavigationContainer>
 );

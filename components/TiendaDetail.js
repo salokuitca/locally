@@ -77,39 +77,63 @@ const TiendaDetail = ({navigation}) => {
                     <TouchableWithoutFeedback onPress={() => {
                         navigation.navigate('ItemDetail')
                     }}>
-                    <View style={styles.imageProductosDestacadosContainer}>
-                        <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                        style={styles.imageProductosDestacados}
-                        />
-                    </View>
+                        <View style={styles.imageProductosDestacadosContainer}>
+                            <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
+                            style={styles.imageProductosDestacados}
+                            />
+                        </View>
                     </TouchableWithoutFeedback>
-                    <View style={styles.imageProductosDestacadosContainer}>
-                        <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                        style={styles.imageProductosDestacados}
-                        />
-                    </View>
-                    <View style={styles.imageProductosDestacadosContainer}>
-                        <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                        style={styles.imageProductosDestacados}
-                        />
-                    </View>
-                    <View style={styles.imageProductosDestacadosContainer}>
-                        <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                        style={styles.imageProductosDestacados}
-                        />
-                    </View>
-                    <View style={styles.imageProductosDestacadosContainer}>
-                        <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                        style={styles.imageProductosDestacados}
-                        />
-                    </View>
-                    <View style={styles.imageProductosDestacadosContainer}>
-                        <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                        style={styles.imageProductosDestacados}
-                        />
-                    </View>
+                    <TouchableWithoutFeedback onPress={() => {
+                        navigation.navigate('ItemDetail')
+                    }}>
+                        <View style={styles.imageProductosDestacadosContainer}>
+                            <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
+                            style={styles.imageProductosDestacados}
+                            />
+                        </View>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={() => {
+                        navigation.navigate('ItemDetail')
+                    }}>
+                        <View style={styles.imageProductosDestacadosContainer}>
+                            <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
+                            style={styles.imageProductosDestacados}
+                            />
+                        </View>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={() => {
+                        navigation.navigate('ItemDetail')
+                    }}>
+                        <View style={styles.imageProductosDestacadosContainer}>
+                            <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
+                            style={styles.imageProductosDestacados}
+                            />
+                        </View>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={() => {
+                        navigation.navigate('ItemDetail')
+                    }}>
+                        <View style={styles.imageProductosDestacadosContainer}>
+                            <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
+                            style={styles.imageProductosDestacados}
+                            />
+                        </View>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={() => {
+                        navigation.navigate('ItemDetail')
+                    }}>
+                        <View style={styles.imageProductosDestacadosContainer}>
+                            <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
+                            style={styles.imageProductosDestacados}
+                            />
+                        </View>
+                    </TouchableWithoutFeedback>
                 </View>
-                <Text style= {styles.textVerProductos}>Todos los productos</Text>
+                <TouchableWithoutFeedback onPress={() => {
+                    navigation.navigate('AllProducts')
+                }}>
+                    <Text style= {styles.textVerProductos}>Todos los productos</Text>
+                </TouchableWithoutFeedback>
             </Card>
             {/* Card Redes Sociales */}
             <Card>
