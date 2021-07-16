@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import {useFonts} from 'expo-font';
+import { Provider } from 'react-redux';
 import TiendaNavigator from './navigation/TiendaNavigator';
+import store from './store';
 
 
 
@@ -22,7 +24,9 @@ export default function App() {
   }
 
   return (
+    <Provider store={store}>
       <TiendaNavigator/>
+    </Provider>
   );
 }
 
