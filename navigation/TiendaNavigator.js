@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 const TiendaNavigator = () => (
     <NavigationContainer>
         <Stack.Navigator initialRouteName="ItemList">
-            <Stack.Screen name="ItemList" component={ItemListContainer}
+            <Stack.Screen name="Tiendas cerca de ti" component={ItemListContainer}
             />        
             <Stack.Screen name="TiendaDetail" 
                 component={TiendaDetailContainer}

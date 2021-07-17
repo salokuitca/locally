@@ -8,6 +8,7 @@ const INITIAL_STATE = {
 
 const TiendasReducer = (state= INITIAL_STATE, action) => {
     switch (action.type) {
+        // Selección de tienda
         case SELECT_TIENDA:
             const tiendaIndex= state.listTiendas.findIndex (tienda => tienda.id === action.tiendaID);
             if (tiendaIndex === -1) return {...state};
