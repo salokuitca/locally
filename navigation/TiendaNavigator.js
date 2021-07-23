@@ -5,6 +5,7 @@ import ItemListContainer from '../screens/ItemListContainer';
 import TiendaDetailContainer from '../screens/TiendaDetailContainer';
 import ItemDetailContainer from '../screens/ItemDetailContainer';
 import AllProducts from '../components/AllProducts';
+import CartContainer from '../screens/CartContainer';
 
 const Stack = createStackNavigator();
 
@@ -22,7 +23,11 @@ const TiendaNavigator = () => (
                 options = {({route}) => ({title: route.params.name})}
             />
             <Stack.Screen name="AllProducts" component={AllProducts}/>
-                    
+            <Stack.Screen
+                name= 'Cart'
+                component = {CartContainer}
+                option = {{title:'Carrito'}}
+            />        
         </Stack.Navigator>
     </NavigationContainer>
 );

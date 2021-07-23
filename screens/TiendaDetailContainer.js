@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View, Text, Image, ScrollView, TouchableWithoutFeedback, FlatList} from 'react-native';
+import {StyleSheet, View, Text, Image, ScrollView, TouchableWithoutFeedback, FlatList, TouchableOpacity} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../components/Card';
 import Colors from '../constants/colors';
@@ -22,6 +22,8 @@ const TiendaDetailContainer = ({navigation}) => {
             name: product.name,
         });
     }
+
+    const handleShowCart = () => navigation.push('Cart');
     
     return (
         <>
@@ -66,9 +68,11 @@ const TiendaDetailContainer = ({navigation}) => {
                         <View>
                             <Image source={require('../assets/images/iconoMensaje.png')} style={styles.iconosInferioresCard}/>
                         </View>
-                        <View>
-                            <Image source={require('../assets/images/iconoCart.png')} style={styles.iconosInferioresCard}/>
-                        </View>
+                        <TouchableOpacity onPress={handleShowCart}>
+                            <View>
+                                <Image source={require('../assets/images/iconoCart.png')} style={styles.iconosInferioresCard}/>
+                            </View>
+                        </TouchableOpacity>
                         <View>
                         <Image source={require('../assets/images/like.png')} style={styles.iconosInferioresCard}/>
                         </View>

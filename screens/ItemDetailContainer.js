@@ -1,13 +1,18 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { useSelector } from 'react-redux';
-import { selectProduct } from '../store/actions/products.action';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { addItem } from '../store/actions/cart.action';
 import Card from '../components/Card';
 import Colors from '../constants/colors';
 
 
 const ItemDetailContainer = () => {
+    const dispatch = useDispatch();
     const product = useSelector (state => state.products.selected)
+
+    const handleAddItem = () => {
+        dispatch(addItem(product))
+    }
     return (
         <>
         <View style={styles.screen}>
@@ -27,8 +32,9 @@ const ItemDetailContainer = () => {
             {/* Botón para agregar al Cart + precio */}
             <View style={styles.containerAgrgarCartPrecio}>
                 <View style={styles.agregarCartContainer}>
-                    <Text style={styles.textButton}>AGREGAR AL CARRITO</Text
-                    >
+                    <TouchableOpacity onPress={handleAddItem}>
+                    <Text style={styles.textButton}>AGREGAR AL CARRITO</Text>
+                    </TouchableOpacity>
                     <View>
                             <Image source={require('../assets/images/cartWhite.png')} style={styles.iconosCart}/>
                         </View>
