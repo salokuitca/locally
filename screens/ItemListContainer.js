@@ -1,21 +1,29 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View, Text, FlatList, Image, TouchableWithoutFeedback} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import { selectTienda } from '../store/actions/tiendas.action';
+import { selectTienda, likeTienda } from '../store/actions/tiendas.action';
 import Card from '../components/Card';
-import Colors from '../constants/colors';
+import TiendaMiniatura from '../components/TiendaMiniatura';
+
 
 
 
 const ItemListContainer = ({navigation}) => {
     const dispatch = useDispatch();
-    const tiendas = useSelector (state => state.tiendas.listTiendas)
+    const tiendas = useSelector (state => state.tiendas.listTiendas);
+    const like = useSelector (state => state.tiendas.like);
+    const likeSelected = useSelector (state => state.tiendas.likeSelected);
     const handleSelected = (item) => {
         dispatch(selectTienda(item.id)),
         navigation.navigate('TiendaDetail', {
             name: item.name,
         })
     }
+    const handleLike = (item) => {
+        dispatch(likeTienda(item.id));
+    }
+   
+    
     
     return (
         <>
@@ -29,35 +37,10 @@ const ItemListContainer = ({navigation}) => {
                     data => {
                         return (
                             <>
-                            
                             <Card >
-                            <TouchableWithoutFeedback onPress={() => handleSelected(data.item)}>
-                                <View style={styles.card}>
-                                    <View>
-                                        <Image source={{uri: 'https://dummyimage.com/50x50/000/fff'}}
-                                        style={styles.image}
-                                        />
-                                    </View>
-                                    <View>
-                                        <View style={styles.textContainer}>
-                                            <Text style={styles.textName}  >{data.item.name}</Text>
-                                        </View>
-                                        <View style={styles.textContainer}>
-                                            <Text style={styles.textDescription}>{data.item.description}</Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.likeDistanceContainer}>
-                                        <View>
-                                        <Image source={require('../assets/images/like.png')} style={styles.imageLike}/>
-                                        </View>
-                                        <View>
-                                        <Text style={styles.textDistance}>{data.item.distance}</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                </TouchableWithoutFeedback>
+                                
+                                <TiendaMiniatura item ={data.item} onSelected={handleSelected} onLike={handleLike} like={like} likeSelected={likeSelected}/>
                             </Card>
-                            
                             </>
                         )
                     }
@@ -72,46 +55,7 @@ const ItemListContainer = ({navigation}) => {
 }
 
 const styles= StyleSheet.create({
-    screen: {
-        width: "100%",
-        backgroundColor: Colors.backgroundGeneral,
-    },
-    container: {
-        height:'100%'
-    },
-    card: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    textContainer: {
-        width: 200
-    },
-    textName: {
-        fontFamily: 'roboto-medium',
-        fontSize: 20
-    },
-    textDescription:{
-        fontFamily: 'roboto-regular',
-        fontSize: 14,
-    },
-    textDistance: {
-        fontFamily: 'roboto-light',
-        fontSize: 15
-
-    },
-    likeDistanceContainer: {
-        alignItems: 'center',
-    },
-    image: {
-        width: 50,
-        height: 50,
-        borderRadius: 100
-    },
-    imageLike: {
-        width: 20,
-        height: 20
-    }
+   
 });
 
 export default ItemListContainer;
