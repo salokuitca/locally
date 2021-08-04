@@ -1,11 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Card from '../components/Card';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import Colors from '../constants/colors';
 
-const PerfilContainer = () => {
+const PerfilContainer = ({navigation}) => {
+    const handleConfiguracion = () => {
+        navigation.navigate('Foto de Perfil')
+    }
+
     return (
         <>
         <View style={styles.container}>
@@ -16,13 +20,16 @@ const PerfilContainer = () => {
                     </View>
                     <Text style={styles.text}>Favoritos</Text>
                 </Card>
+               
                 <Card style={styles.cardFavoritos}>
-                    <View>
-                        <Ionicons name="settings-sharp" size={50} color={Colors.tabBar} />
-                    </View>
-                    <Text style={styles.text}>Configuración</Text>
-                    
+                    <TouchableOpacity onPress={handleConfiguracion} style={styles.touchable}>
+                        <View>
+                            <Ionicons name="settings-sharp" size={50} color={Colors.tabBar} />
+                        </View>
+                        <Text style={styles.text}>Configuración</Text>
+                    </TouchableOpacity>    
                 </Card>
+                
                 
             </View>
            
@@ -57,6 +64,10 @@ const styles = StyleSheet.create({
     },
     cardFavoritos: {
         width: '42%',
+        justifyContent:'center',
+        alignItems : 'center'
+    },
+    touchable: {
         justifyContent:'center',
         alignItems : 'center'
     },

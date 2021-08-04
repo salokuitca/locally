@@ -1,16 +1,25 @@
-import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import React, {useEffect} from 'react';
+import { View, StyleSheet, Text, Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../../constants/colors';
+import { useSelector, useDispatch } from 'react-redux';
+import { loadFoto } from '../../store/actions/foto.action';
 
 import PerfilNavigator from '../perfil';
 import TiendaNavigator from '../tienda';
 import MapNavigator from '../map';
 
+
 const TabStack = createBottomTabNavigator();
 
 const TabNvigator = () => {
+    const dispatch = useDispatch()
+    const imageURL = useSelector(state => state.foto.foto)
+
+    useEffect(() => {
+        dispatch(loadFoto());
+    }, []);
     return (
         <TabStack.Navigator 
             initialRouteName="Map"
@@ -50,7 +59,11 @@ const TabNvigator = () => {
                 options={{
                     tabBarIcon: ({focused}) => (
                         <View style={styles.icon}>
-                            <Ionicons name="person"  color={focused ? Colors.iconsfocused :Colors.icons } size={24}/>
+                            {   imageURL
+                                ? <Image style={styles.imagen} source={{uri: imageURL}}/>
+                                : <Ionicons name="person"  color={focused ? Colors.iconsfocused :Colors.icons } size={24}/>
+                            }
+                            {/* <Ionicons name="person"  color={focused ? Colors.iconsfocused :Colors.icons } size={24}/> */}
                             <Text style={ focused ? styles.textFocused : styles.text}>Mi Perfil</Text>
                         </View>
                     )
@@ -69,6 +82,11 @@ const styles=StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    imagen: {
+        width: 24,
+        height: 24,
+        borderRadius: 100
     },
     text: {
         color: Colors.icons,
