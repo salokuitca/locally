@@ -1,7 +1,7 @@
 export const ADD_ITEM = 'ADD_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const CONFIRM_CART = 'CONFIRM_CART';
-import { URL_API } from "../../constants/database";
+import { DB_API_URL } from "@env";
 
 export const addItem = item => ({
     type: ADD_ITEM,
@@ -16,7 +16,7 @@ export const deleteItem = itemID => ({
 export const confirmCart = (payload) => {
     return async (dispatch) => {
         try {
-            const response = await fetch (`${URL_API}/carrito.json`, {
+            const response = await fetch (`${DB_API_URL}/carrito.json`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

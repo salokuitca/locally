@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
+import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteItem, confirmCart } from '../store/actions/cart.action';
 import CartItem from '../components/CartItem';
 import Colors from '../constants/colors';
+import { MaterialIcons } from '@expo/vector-icons'; 
 
 
 const CartContainer = () => {
@@ -29,7 +30,12 @@ const CartContainer = () => {
                     renderItem = {renderItem}
                 />
             </View>
-            <Button title="ENVIAR PEDIDO" onPress={handleConfirmCart} color={Colors.buttonPrimary}/>
+            <View style={styles.containerButton}>
+            <TouchableOpacity style={styles.button} onPress={handleConfirmCart}>
+                <Text style={styles.textButton}>ENVIAR PEDIDO</Text>
+                <MaterialIcons name="shopping-bag" size={24} color={Colors.agregarCart}/>
+            </TouchableOpacity>
+            </View>
             <View style={styles.footer}>
                 <Text style={styles.text}>Total</Text>
                 <Text style={styles.text}>${total}</Text>
@@ -58,7 +64,30 @@ const styles = StyleSheet.create ({
     },
     text: {
         padding: 8,
-    }
+    },
+    containerButton: {
+        alignItems: 'center'
+    },
+    button: {
+        width:205,
+        height: 42,
+        backgroundColor: Colors.buttonPrimary,
+        borderRadius: 4,
+        flexDirection:'row',
+        alignItems: 'center',
+        justifyContent: 'space-around'
+    },
+    textButton:{
+        color: Colors.agregarCart,
+        fontFamily: 'roboto-regular',
+        fontSize: 14,
+        fontWeight: 'bold',
+        marginLeft: 37,
+               
+    },
+    // bag: {
+    //     marginLeft: 10,
+    // },
 });
 
 export default CartContainer;

@@ -27,7 +27,8 @@ const TiendaNavigator = () => (
                 name="Tiendas cerca de ti" 
                 component={ItemListContainer}
             />        
-            <TiendaStack.Screen name="TiendaDetail" 
+            <TiendaStack.Screen 
+                name="TiendaDetail" 
                 component={TiendaDetailContainer}
                 options = {({route}) => ({title: route.params.name})}
             />        
@@ -39,7 +40,7 @@ const TiendaNavigator = () => (
             <TiendaStack.Screen
                 name= 'Cart'
                 component = {CartContainer}
-                option = {{title:'Carrito'}}
+                options={{title: 'CARRITO DE COMPRAS'}}
             />        
         </TiendaStack.Navigator>
    

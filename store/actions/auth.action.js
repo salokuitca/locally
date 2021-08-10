@@ -1,4 +1,4 @@
-import { URL_AUTH_SIGNUP, URL_AUTH_LOGIN } from '../../constants/database';
+import { AUTH_SIGNUP_URL, AUTH_LOGIN_URL } from '@env';
 
 export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
@@ -11,7 +11,7 @@ const errorMessages = {
 
 export const signup = (email, password) => {
   return async dispatch => {
-    const response = await fetch(URL_AUTH_SIGNUP, {
+    const response = await fetch(AUTH_SIGNUP_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ export const signup = (email, password) => {
 
 export const login = (email, password) => {
     return async dispatch => {
-      const response = await fetch(URL_AUTH_LOGIN, {
+      const response = await fetch(AUTH_LOGIN_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
