@@ -24,7 +24,8 @@ const PerfilContainer = ({navigation}) => {
                 <Card style={styles.cardFavoritos}>
                     <TouchableOpacity onPress={handleConfiguracion} style={styles.touchable}>
                         <View>
-                            <Ionicons name="settings-sharp" size={50} color={Colors.tabBar} />
+                            {/* <Ionicons name="settings-sharp" size={50} color={Colors.tabBar} /> */}
+                            <Ionicons name="person" size={50} color={Colors.tabBar} />
                         </View>
                         <Text style={styles.text}>Configuración</Text>
                     </TouchableOpacity>    

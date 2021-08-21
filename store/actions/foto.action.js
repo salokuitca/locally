@@ -33,7 +33,6 @@ export const loadFoto = () => {
             const result = await fetchFoto();
             console.log (result);
             dispatch({type: LOAD_FOTO, foto: result.rows._array })
-            console.log(foto)
         } catch (error) {
             throw error;
         }

@@ -1,5 +1,5 @@
-import React, {useReducer, useCallback} from 'react';
-import { StyleSheet, View, Text, Button, KeyboardAvoidingView } from 'react-native';
+import React, {useReducer, useCallback, useState, useEffect} from 'react';
+import { StyleSheet, View, Text, Button, KeyboardAvoidingView, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { signup, login } from '../../store/actions/auth.action';
 import Input from '../../components/Input';
@@ -38,6 +38,13 @@ const formReducer = (state, action) => {
 
 const AuthScreen = () => {
     const dispatch = useDispatch();
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+      if (error) {
+        Alert.alert("Ha ocurrido un error", error, [{ text: 'Ok' }]);
+      }
+    }, [error]);
     const [formState, dispatchFormState] = useReducer(formReducer, {
         inputValues: {
           email: '',
@@ -61,7 +68,7 @@ const AuthScreen = () => {
 
       const onLoginHandler = async () => {
         try {
-           dispatch(await login(formState.inputValues.email, formState.inputValues.password));
+          await dispatch(login(formState.inputValues.email, formState.inputValues.password));
         } catch (err) {
           setError(err.message);
         }
@@ -69,7 +76,7 @@ const AuthScreen = () => {
 
       const onSignupHandler = async () => {
         try {
-           dispatch(await signup(formState.inputValues.email, formState.inputValues.password));
+          await dispatch(signup(formState.inputValues.email, formState.inputValues.password));
         } catch (err) {
 
           setError(err.message);
@@ -121,6 +128,7 @@ const AuthScreen = () => {
                 </View>
             </View>   
         </KeyboardAvoidingView>
+        
         </>
     )
 }
