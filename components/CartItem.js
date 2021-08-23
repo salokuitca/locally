@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, Image, TouchableOpacity } from 'react-native';
-import Color from '../constants/colors';
-import { Ionicons } from '@expo/vector-icons'; 
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-const CartItem = ({item, onDelete}) => {
+import { Ionicons } from '@expo/vector-icons'; 
+import { Octicons } from '@expo/vector-icons';
+
+const CartItem = ({item, onDelete, onAddCantidad, onRestarCantidad}) => {
     
     return (
         <>
@@ -12,10 +13,28 @@ const CartItem = ({item, onDelete}) => {
             <View style={styles.container}>
                 <Image style={styles.image} source={{uri: item.image}}/>
                 <View style={styles.header}>
+                    
+                    
                     <Text style={styles.text}>{item.name}</Text>
-                    <View>
-                        <Text>Cantidad: {item.quantity}</Text>
+                    
+                    
+                    <View style={styles.cantidadContainer}>
+                        <TouchableOpacity onPress={()=> onRestarCantidad(item)} style={styles.botonesCantidad}>
+                            <View>
+                            <Octicons name="dash" size={18} color="#333333" />
+                            </View>
+                        </TouchableOpacity>
+                        <View style={styles.textCantidadContainer}>
+                        <Text style={styles.textCantidad}>{item.quantity}</Text>
+                        </View>
+                        <TouchableOpacity onPress={()=> onAddCantidad(item)} style={styles.botonesCantidad}>
+                            <View>
+                            <Octicons name="plus" size={18} color="#333333" />
+                            </View>
+                        </TouchableOpacity>
+                        
                     </View>
+                    
                 </View>
             </View>
                 <View>
@@ -39,11 +58,53 @@ const styles = StyleSheet.create({
         padding: 8,
         borderBottomColor: '#ccc',
         borderBottomWidth: 1,
+        
       },
       header: {
         fontFamily: 'roboto-regular',
         fontSize: 16,
-        padding: 7,
+        padding: 3,
+        paddingLeft: 10,
+        height: 62
+        
+      },
+      centrar: {
+        alignSelf: 'center'
+      },
+      cantidadContainer: {
+          width: 80,
+          height: '43%',
+          marginLeft: 10,
+          paddingHorizontal: 5,
+          marginVertical: 3,
+          flexDirection:'row',
+          justifyContent: 'space-between',
+          alignItems:'center',
+          borderRadius: 4,
+          borderWidth: 1,
+          borderColor: 'grey',
+          
+          
+      },
+      botonesCantidad: {
+        paddingLeft: 3,
+        width: 20,
+        alignSelf: 'center',
+        justifyContent: 'center'
+       
+
+      },
+      textCantidad:{
+          textAlign: 'center',
+          
+          paddingHorizontal: 5,
+          width: 25, 
+      },
+      textCantidadContainer:{
+          height: '100%',
+          backgroundColor: '#e5e5e5',
+          justifyContent:'center',
+          width: 25, 
       },
       detail: {
         flex: 1,
@@ -54,7 +115,8 @@ const styles = StyleSheet.create({
       },
       container: {
           flexDirection: 'row',
-          justifyContent: 'space-around'
+          justifyContent: 'space-between',
+          
       },
       text: {
         fontSize: 16,
@@ -62,7 +124,7 @@ const styles = StyleSheet.create({
       },
       image: {
           width: 99,
-          height: 56
+          height: 62
       },
       price: {
           paddingTop: 8,

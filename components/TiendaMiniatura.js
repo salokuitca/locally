@@ -1,17 +1,32 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../constants/colors';
+import { useDispatch } from 'react-redux';
+import { likeTienda } from '../store/actions/tiendas.action';
 
 
-const TiendaMiniatura = ({item, onSelected, onLike, like, likeSelected}) => {
+
+
+const TiendaMiniatura = ({item, onSelected}) => {
+    const dispatch = useDispatch();
+    const [likeState, setLikeState] = useState(false)
+    const handleLike = (item) => {
+        dispatch(likeTienda(item.id));
+        setLikeState(!likeState)
+        
+        
+    }
+
+    
+
+    
+    
     return (
         <>
         <TouchableOpacity onPress={() => onSelected(item)}>
            
             <View style={styles.card}>
-                <Text>{likeSelected.likeItem}</Text>
-                <Text>{likeSelected.prueba}</Text>
                 <View>
                     <Image source={{uri: 'https://dummyimage.com/50x50/000/fff'}}
                         style={styles.image}
@@ -26,8 +41,9 @@ const TiendaMiniatura = ({item, onSelected, onLike, like, likeSelected}) => {
                         </View>
                 </View>
                 <View style={styles.likeDistanceContainer}>
-                    <TouchableOpacity onPress={()=> onLike(item)}>
-                        { likeSelected.likeItem && (likeSelected.id === item.id)
+                    <TouchableOpacity onPress={()=> handleLike(item)}>
+                        { 
+                        item.favourite
                             ? <Ionicons name="heart" size={30} color="red" />
                             : <Ionicons name="heart-outline" size={30} color="black" />
                         }

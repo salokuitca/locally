@@ -4,8 +4,7 @@ import { SELECT_TIENDA, LIKE_TIENDA } from "../actions/tiendas.action";
 const INITIAL_STATE = {
     listTiendas: TIENDAS,
     selected: null,
-    like: false,
-    likeSelected: [],
+    
     
 }
 
@@ -21,22 +20,26 @@ const TiendasReducer = (state= INITIAL_STATE, action) => {
             }
         case LIKE_TIENDA:
             
-           
+            
             const tiendaIndexLike= state.listTiendas.findIndex (tienda => tienda.id === action.tiendaID);
-            if (tiendaIndexLike === -1) {
-                const notLike= {...state.listTiendas[tiendaIndexLike], like: false}
-                return {
-                    ...state,
-                    likeSelected: notLike,
-                }
-            }
-            const opuestoLike = state.like;
-            const itemLike = {...state.listTiendas[tiendaIndexLike], likeItem: !opuestoLike}            
+            
+            state.listTiendas[tiendaIndexLike].favourite=!state.listTiendas[tiendaIndexLike].favourite
+            
+            
+            // if (tiendaIndexLike === -1) {
+            //     const notLike= {...state.listTiendas[tiendaIndexLike], like: false}
+            //     return {
+            //         ...state,
+            //         likeSelected: notLike,
+            //     }
+            // }
+            // const opuestoLike = state.like;
+            // const itemLike = {...state.listTiendas[tiendaIndexLike], likeItem: !opuestoLike}            
             
             return {
                 ...state,
-                like: !opuestoLike,
-                likeSelected: itemLike,
+                // like: !opuestoLike,
+                // likeSelected: itemLike,
                 
             }
         default:

@@ -9,6 +9,7 @@ import { loadFoto } from '../../store/actions/foto.action';
 import PerfilNavigator from '../perfil';
 import TiendaNavigator from '../tienda';
 import MapNavigator from '../map';
+import CartNavigator from '../cart';
 
 
 const TabStack = createBottomTabNavigator();
@@ -53,6 +54,19 @@ const TabNvigator = () => {
                     )
                 }}
             />
+                <TabStack.Screen
+                    name="Cart"
+                    component={CartNavigator}
+                    options={{
+                        tabBarIcon: ({focused}) => (
+                            <View style={styles.icon}>
+                                
+                                <Ionicons name="cart"  color={focused ? Colors.iconsfocused :Colors.icons } size={24}/>
+                                <Text style={ focused ? styles.textFocused : styles.text}>Carrito</Text>
+                            </View>
+                        )
+                    }}
+                />
             <TabStack.Screen
                 name="Perfil"
                 component={PerfilNavigator}

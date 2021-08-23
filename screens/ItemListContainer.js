@@ -11,17 +11,14 @@ import TiendaMiniatura from '../components/TiendaMiniatura';
 const ItemListContainer = ({navigation}) => {
     const dispatch = useDispatch();
     const tiendas = useSelector (state => state.tiendas.listTiendas);
-    const like = useSelector (state => state.tiendas.like);
-    const likeSelected = useSelector (state => state.tiendas.likeSelected);
+ 
     const handleSelected = (item) => {
         dispatch(selectTienda(item.id)),
         navigation.navigate('TiendaDetail', {
             name: item.name,
         })
     }
-    const handleLike = (item) => {
-        dispatch(likeTienda(item.id));
-    }
+    
    
     
     
@@ -39,7 +36,7 @@ const ItemListContainer = ({navigation}) => {
                             <>
                             <Card >
                                 
-                                <TiendaMiniatura item ={data.item} onSelected={handleSelected} onLike={handleLike} like={like} likeSelected={likeSelected}/>
+                                <TiendaMiniatura item ={data.item} onSelected={handleSelected} />
                             </Card>
                             </>
                         )

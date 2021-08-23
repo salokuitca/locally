@@ -1,4 +1,4 @@
-import { ADD_ITEM, DELETE_ITEM, CONFIRM_CART } from "../actions/cart.action";
+import { ADD_ITEM, DELETE_ITEM, CONFIRM_CART, ADD_CANTIDAD, RESTAR_CANTIDAD, DELETE_CART } from "../actions/cart.action";
 
 const INITIAL_STATE = {
     items: [],
@@ -44,6 +44,41 @@ const CartReducer = (state = INITIAL_STATE, action) => {
                 items: cleanCart,
                 total: sumTotal(cleanCart),
             }
+        case ADD_CANTIDAD:
+          
+          const updatedCantidad = state.items.map(item => {
+            if (item.id === action.item.id) item.quantity ++;
+            
+            return item;
+          })
+          
+          return {
+            ...state,
+            items: updatedCantidad,
+            total: sumTotal(updatedCantidad),
+          };
+        case RESTAR_CANTIDAD:
+          const updatedCantidadRestar = state.items.map(item => {
+            if ((item.id === action.item.id) && (item.quantity===1)) {
+              item.quantity = 1
+            } else if (item.id === action.item.id) {
+              item.quantity --;
+            }
+            
+            return item;
+          })
+          
+          return {
+            ...state,
+            items: updatedCantidadRestar,
+            total: sumTotal(updatedCantidadRestar),
+          };
+        case DELETE_CART:
+          return {
+            items: [],
+            total: 0,
+            confirm: false,
+          }
         default:
             return state;
     }

@@ -1,79 +1,55 @@
-import React from 'react';
-import {StyleSheet, View, Image, Text} from 'react-native';
+import React, {useEffect} from 'react';
+import {StyleSheet, View, Image, Text, TouchableOpacity} from 'react-native';
 import Card from './Card';
+import { useSelector, useDispatch } from 'react-redux';
+import { filterProduct, selectProduct } from '../store/actions/products.action';
 
-const AllProducts = () => {
+const AllProducts = ({navigation}) => {
+    const dispatch = useDispatch();
+    const product = useSelector (state => state.products.filteredProducts);
+    const tienda = useSelector (state => state.tiendas.selected)
+
+    useEffect (() => {
+        dispatch(filterProduct(tienda.id))
+    },[])
+
+    const handleSelected = (product) => {
+        dispatch(selectProduct(product.id))
+        navigation.navigate('ItemDetail', {
+            name: product.name,
+        });
+    }
+
+    const handleClose = () => navigation.goBack();
+
     return (
         <>
         {/* Card contenedora de la pantalla */}
         <Card >
             {/* Encabezado de la card */}
             <View style={styles.encabezadoCard}>
-                <Text style={styles.textTitulo}>Todos los Productos</Text>
+                <Text style={styles.textTitulo}>Todos los productos</Text>
+                <TouchableOpacity onPress={() => handleClose()}>
+                    <Image source={require('../assets/images/iconClose.png')} style={styles.iconoClose}/>
+                </TouchableOpacity>
             </View>
             {/* Imágenes de los productos */}
             <View style={styles.container}>
+                {
+                    product.map ((product, index) => {
+                        return (
+                            <TouchableOpacity style={styles.imageProductosContainer} onPress={()=>{handleSelected(product)}} key={index}>
+                                <View>
+                                    <Image source={{uri: product.image}}
+                                    style={styles.imageProductos}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                        )
+                    })
+                }
                 
-                <View style={styles.imageProductosContainer}>
-                    <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                    style={styles.imageProductos}
-                    />
-                </View>
-                <View style={styles.imageProductosContainer}>
-                    <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                    style={styles.imageProductos}
-                    />
-                </View>
-                <View style={styles.imageProductosContainer}>
-                    <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                    style={styles.imageProductos}
-                    />
-                </View>
-                <View style={styles.imageProductosContainer}>
-                    <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                    style={styles.imageProductos}
-                    />
-                </View>
-                <View style={styles.imageProductosContainer}>
-                    <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                    style={styles.imageProductos}
-                    />
-                </View>
-                <View style={styles.imageProductosContainer}>
-                    <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                    style={styles.imageProductos}
-                    />
-                </View>
-                <View style={styles.imageProductosContainer}>
-                    <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                    style={styles.imageProductos}
-                    />
-                </View>
-                <View style={styles.imageProductosContainer}>
-                    <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                    style={styles.imageProductos}
-                    />
-                </View>
-                <View style={styles.imageProductosContainer}>
-                    <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                    style={styles.imageProductos}
-                    />
-                </View>
-                <View style={styles.imageProductosContainer}>
-                    <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                    style={styles.imageProductos}
-                    />
-                </View>
-                <View style={styles.imageProductosContainer}>
-                    <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                    style={styles.imageProductos}
-                    />
-                </View>
-                <View style={styles.imageProductosContainer}>
-                    <Image source={{uri: 'https://dummyimage.com/100x100/000/fff'}}
-                    style={styles.imageProductos}
-                    />
-                </View>
+                
             </View>
         </Card>
         </>
@@ -86,6 +62,9 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap'
     },
     encabezadoCard: {
+        flexDirection:'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         paddingBottom: 5,
         marginBottom: 15,
         borderBottomWidth: 1,

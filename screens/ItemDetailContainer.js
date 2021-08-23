@@ -1,18 +1,26 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem } from '../store/actions/cart.action';
 import Card from '../components/Card';
 import Colors from '../constants/colors';
 
 
-const ItemDetailContainer = () => {
+const ItemDetailContainer = ({navigation}) => {
     const dispatch = useDispatch();
     const product = useSelector (state => state.products.selected)
 
     const handleAddItem = () => {
         dispatch(addItem(product))
+        Alert.alert(
+            '¡ITEM AGREGADO!',
+            ' ',
+            [{ text: 'Ok' }],
+          );
     }
+    
+    const handleClose = () => navigation.goBack();
+
     return (
         <>
         <View style={styles.screen}>
@@ -21,7 +29,9 @@ const ItemDetailContainer = () => {
             {/* Encabezado de la card */}
             <View style={styles.encabezadoCard}>
                 <Text style={styles.textTitulo}>{product.name}</Text>
-                <Image source={require('../assets/images/iconClose.png')} style={styles.iconoClose}/>
+                <TouchableOpacity onPress={() => handleClose()}>
+                    <Image source={require('../assets/images/iconClose.png')} style={styles.iconoClose}/>
+                </TouchableOpacity>
             </View>
             {/* Imagen del producto */}
             <View style={styles.imagePrincipalContainer}>

@@ -23,7 +23,9 @@ const TiendaDetailContainer = ({navigation}) => {
         });
     }
 
-    const handleShowCart = () => navigation.push('Cart');
+    
+
+    const handleClose = () => navigation.goBack();
     
     return (
         <>
@@ -50,7 +52,7 @@ const TiendaDetailContainer = ({navigation}) => {
                                 <Text style={styles.textSubtitulo}>{item.description}</Text>
                             </View>
                         </View>
-                        <TouchableWithoutFeedback onPress={()=> {}}>
+                        <TouchableWithoutFeedback onPress={()=> handleClose()}>
                         <View>
                             <View>
                             <Image source={require('../assets/images/iconClose.png')} style={styles.iconoClose}/>
@@ -64,19 +66,7 @@ const TiendaDetailContainer = ({navigation}) => {
                     <View style={styles.descripcionTienda}>
                         <Text style={styles.textDescripcionTienda}>{item.longDescription}</Text>
                     </View>
-                    <View style={styles.containerInferiorCard}>
-                        <View>
-                            <Image source={require('../assets/images/iconoMensaje.png')} style={styles.iconosInferioresCard}/>
-                        </View>
-                        <TouchableOpacity onPress={handleShowCart}>
-                            <View>
-                                <Image source={require('../assets/images/iconoCart.png')} style={styles.iconosInferioresCard}/>
-                            </View>
-                        </TouchableOpacity>
-                        <View>
-                        <Image source={require('../assets/images/like.png')} style={styles.iconosInferioresCard}/>
-                        </View>
-                    </View>
+                    
                 </Card>
                 {/* Card promociones */}
                 <Card>
@@ -98,25 +88,21 @@ const TiendaDetailContainer = ({navigation}) => {
                 <Card>
                     <Text style={styles.textPromociones}>Productos destacados</Text>
                     <View style={styles.cardProductosDestacados}>
-                    <FlatList
-                    data={products}
-                    renderItem= {
-                        data => {
+                    {
+                        products.map((product, index) => {
                             return (
-                                <TouchableWithoutFeedback onPress={() => handleSelected(data.item)}>
+                                <TouchableWithoutFeedback onPress={() => handleSelected(product)} key={index}>
                                     <View style={styles.imageProductosDestacadosContainer}>
                                         
-                                        <Image source={{uri: data.item.image}}
+                                        <Image source={{uri: product.image}}
                                         style={styles.imageProductosDestacados}
                                         />
                                     </View>
                                 </TouchableWithoutFeedback>
                             )
-                        }
-                       
+                        })
                     }
-                    numColumns={3}
-                    keyExtractor={item => item.id}/>
+                    
                     </View>
                     <TouchableWithoutFeedback onPress={() => {
                         navigation.navigate('AllProducts')
