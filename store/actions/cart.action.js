@@ -30,7 +30,7 @@ export const deleteCart = () => ({
     type: DELETE_CART
 })
 
-export const confirmCart = (payload) => {
+export const confirmCart = (payload, user) => {
     return async (dispatch) => {
         try {
             const response = await fetch (`${DB_API_URL}/carrito.json`, {
@@ -41,6 +41,7 @@ export const confirmCart = (payload) => {
                 body: JSON.stringify ({
                     date: Date.now(),
                     items: {...payload},
+                    user,
                 })
             })
             // console.log(response)

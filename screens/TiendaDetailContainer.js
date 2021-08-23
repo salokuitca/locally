@@ -60,6 +60,7 @@ const TiendaDetailContainer = ({navigation}) => {
                             <View>
                                 <Text></Text>
                             </View>
+
                         </View>
                         </TouchableWithoutFeedback>
                     </View>

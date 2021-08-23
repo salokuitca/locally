@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import PerfilContainer from '../../screens/PerfilContainer';
 import Colors from '../../constants/colors';
 import FotoPerfil from '../../screens/FotoPerfil';
+import MisPedidos from '../../screens/MisPedidos';
 
 
 
@@ -32,6 +33,11 @@ const PerfilNavigator = () => {
                 name="Foto de Perfil"
                 component = {FotoPerfil}
                 options={{title: 'Foto de Perfil'}}
+            />
+            <PerfilStack.Screen 
+                name="Pedidos"
+                component = {MisPedidos}
+                options={{title: 'Mis Pedidos'}}
             />
 
             

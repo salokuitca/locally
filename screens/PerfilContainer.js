@@ -10,6 +10,9 @@ const PerfilContainer = ({navigation}) => {
         navigation.navigate('Foto de Perfil')
     }
 
+    const handleMisPedidos = () => {
+        navigation.navigate ('Pedidos')
+    }
     return (
         <>
         <View style={styles.container}>
@@ -33,13 +36,16 @@ const PerfilContainer = ({navigation}) => {
                 
                 
             </View>
-           
+                
                 <Card style={styles.cardPedidos}>
-                    <View>
-                        <MaterialIcons name="shopping-bag" size={50} color={Colors.tabBar} />
-                    </View>
-                    <Text style={styles.text}>Mis Pedidos</Text>
+                    <TouchableOpacity onPress={() => handleMisPedidos()}>
+                        <View>
+                            <MaterialIcons name="shopping-bag" size={50} color={Colors.tabBar} />
+                        </View>
+                        <Text style={styles.text}>Mis Pedidos</Text>
+                    </TouchableOpacity>
                 </Card>
+                
             
                 <Card style={styles.cardPedidos}>
                     <View>

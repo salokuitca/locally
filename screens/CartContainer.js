@@ -12,10 +12,11 @@ const CartContainer = () => {
     const dispatch = useDispatch();
     const items = useSelector (state => state.cart.items);
     const total = useSelector (state => state.cart.total);
+    const user = useSelector (state => state.auth.user);
     
     const handleDeleteItem = (id) => dispatch(deleteItem(id));
     const handleConfirmCart = () => {
-        dispatch(confirmCart(items));
+        dispatch(confirmCart(items, user));
         Alert.alert(
             'PEDIDO ENVIADO',
             'El vendedor se contactará contigo a la brevedad',

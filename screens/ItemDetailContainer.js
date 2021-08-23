@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem } from '../store/actions/cart.action';
 import Card from '../components/Card';
@@ -23,6 +23,7 @@ const ItemDetailContainer = ({navigation}) => {
 
     return (
         <>
+        <ScrollView style={styles.screen}>
         <View style={styles.screen}>
              {/* Card que contiene todo el contenido de la pantalla */}
             <Card style={styles.cardContainer}>
@@ -60,6 +61,7 @@ const ItemDetailContainer = ({navigation}) => {
             
             </Card>
         </View>
+        </ScrollView>
         </>
     )
 }
