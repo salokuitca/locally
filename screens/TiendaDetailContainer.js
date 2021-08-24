@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View, Text, Image, ScrollView, TouchableWithoutFeedback, FlatList, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, Image, ScrollView, TouchableWithoutFeedback, FlatList, TouchableOpacity, Linking} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../components/Card';
 import Colors from '../constants/colors';
@@ -40,7 +40,7 @@ const TiendaDetailContainer = ({navigation}) => {
                 <Card >
                     <View style={styles.containerSuperiorCard}>
                         <View>
-                            <Image source={{uri: 'https://dummyimage.com/50x50/000/fff'}}
+                            <Image source={{uri: item.image}}
                             style={styles.image}
                             />
                         </View>
@@ -72,18 +72,29 @@ const TiendaDetailContainer = ({navigation}) => {
                 {/* Card promociones */}
                 <Card>
                     <Text style={styles.textPromociones}>Promociones</Text>
+                    <ScrollView
+                            horizontal
+                        >
                     <View style={styles.cardPromociones}>
-                        <View style={styles.imagePromocionesContainer}>
-                            <Image source={{uri: 'https://dummyimage.com/200x100/000/fff'}}
-                                    style={styles.imagePromociones}
-                                    />
-                        </View>
-                        <View style={styles.imagePromocionesContainer}>
-                            <Image source={{uri: 'https://dummyimage.com/200x100/000/fff'}}
-                                    style={styles.imagePromociones}
-                                    />
-                        </View>
+                        
+                        {
+                            products.map((product, index) => {
+                                if (product.promocion ===true) {
+                                    return (
+                                        <TouchableOpacity onPress={() => handleSelected(product)} key={index}>
+                                            <View style={styles.imagePromocionesContainer} >
+                                                <Image source={{uri: product.image}}
+                                                        style={styles.imagePromociones}
+                                                        />
+                                            </View>
+                                        </TouchableOpacity>
+                                    )
+                                }
+                            })
+                        }
+                       
                     </View>
+                    </ScrollView>
                 </Card>
                 {/* Card Productos destacados */}
                 <Card>
@@ -91,16 +102,18 @@ const TiendaDetailContainer = ({navigation}) => {
                     <View style={styles.cardProductosDestacados}>
                     {
                         products.map((product, index) => {
-                            return (
-                                <TouchableWithoutFeedback onPress={() => handleSelected(product)} key={index}>
-                                    <View style={styles.imageProductosDestacadosContainer}>
-                                        
-                                        <Image source={{uri: product.image}}
-                                        style={styles.imageProductosDestacados}
-                                        />
-                                    </View>
-                                </TouchableWithoutFeedback>
-                            )
+                            if (product.destacado === true) {
+                                return (
+                                    <TouchableWithoutFeedback onPress={() => handleSelected(product)} key={index}>
+                                        <View style={styles.imageProductosDestacadosContainer}>
+                                            
+                                            <Image source={{uri: product.image}}
+                                            style={styles.imageProductosDestacados}
+                                            />
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                )
+                            }
                         })
                     }
                     
@@ -115,18 +128,26 @@ const TiendaDetailContainer = ({navigation}) => {
                 <Card>
                     <Text style={styles.textPromociones}>Redes Sociales</Text>
                     <View style={styles.redesSocialesContainer}>
+                        <TouchableOpacity onPress={() => {Linking.openURL("https:/instagram.com")}}>
                         <View>
                             <Image source={{uri: 'https://cdn1.iconfinder.com/data/icons/social-media-circle-7/512/Circled_Instagram_svg-512.png'}} style={styles.iconosRedesSociales}/>
                         </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => {Linking.openURL("https:/facebook.com")}}>
                         <View>
                             <Image source={{uri: 'https://cdn1.iconfinder.com/data/icons/social-media-circle-7/512/Circled_Facebook_svg-512.png'}} style={styles.iconosRedesSociales}/>
                         </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => {Linking.openURL("https:/twitter.com")}}>
                         <View>
                             <Image source={{uri: 'https://cdn1.iconfinder.com/data/icons/social-media-circle-7/512/Circled_Twitter_svg-512.png'}} style={styles.iconosRedesSociales}/>
                         </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => {Linking.openURL("https://api.whatsapp.com")}}>
                         <View>
                             <Image source={{uri: 'https://cdn1.iconfinder.com/data/icons/social-media-circle-7/512/Circled_Whatsapp_svg2-512.png'}} style={styles.iconosRedesSociales}/>
                         </View>
+                        </TouchableOpacity>
                     </View>
                 </Card>
             </View>
@@ -202,7 +223,7 @@ const styles= StyleSheet.create({
 
     },
     imagePromocionesContainer: {
-        width: '50%',
+        width: 150,
         paddingHorizontal: 3,
         borderWidth: 0,
         borderRadius: 15,

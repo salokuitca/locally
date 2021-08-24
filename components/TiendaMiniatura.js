@@ -28,7 +28,7 @@ const TiendaMiniatura = ({item, onSelected}) => {
            
             <View style={styles.card}>
                 <View>
-                    <Image source={{uri: 'https://dummyimage.com/50x50/000/fff'}}
+                    <Image source={{uri: item.image}}
                         style={styles.image}
                     />
                 </View>
@@ -95,7 +95,8 @@ const styles = StyleSheet.create({
     image: {
         width: 50,
         height: 50,
-        borderRadius: 100
+        borderRadius: 100,
+        marginRight: 5,
     },
     imageLike: {
         width: 20,

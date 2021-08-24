@@ -52,7 +52,7 @@ const ItemDetailContainer = ({navigation}) => {
                     
                 </View>
                 <View>
-                    <Text style={styles.precio}>{product.price}</Text>
+                    <Text style={styles.precio}>${product.price}</Text>
                 </View>
             </View>
             {/* Descripción del producto */}
