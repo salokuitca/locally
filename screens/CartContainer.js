@@ -86,7 +86,9 @@ const styles = StyleSheet.create ({
         flex: 8,
     },
     text: {
+        fontFamily: 'roboto-regular',
         padding: 8,
+        fontSize: 16,
     },
     containerButton: {
         alignItems: 'center'

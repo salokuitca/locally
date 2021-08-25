@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View, Text, Image, ScrollView, TouchableWithoutFeedback, FlatList, TouchableOpacity, Linking} from 'react-native';
+import {StyleSheet, View, Text, Image, ScrollView, TouchableOpacity, Linking} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../components/Card';
 import Colors from '../constants/colors';
@@ -52,7 +52,7 @@ const TiendaDetailContainer = ({navigation}) => {
                                 <Text style={styles.textSubtitulo}>{item.description}</Text>
                             </View>
                         </View>
-                        <TouchableWithoutFeedback onPress={()=> handleClose()}>
+                        <TouchableOpacity onPress={()=> handleClose()}>
                         <View>
                             <View>
                             <Image source={require('../assets/images/iconClose.png')} style={styles.iconoClose}/>
@@ -62,7 +62,7 @@ const TiendaDetailContainer = ({navigation}) => {
                             </View>
 
                         </View>
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.descripcionTienda}>
                         <Text style={styles.textDescripcionTienda}>{item.longDescription}</Text>
@@ -104,25 +104,24 @@ const TiendaDetailContainer = ({navigation}) => {
                         products.map((product, index) => {
                             if (product.destacado === true) {
                                 return (
-                                    <TouchableWithoutFeedback onPress={() => handleSelected(product)} key={index}>
-                                        <View style={styles.imageProductosDestacadosContainer}>
-                                            
+                                    <TouchableOpacity style={styles.imageProductosDestacadosContainer} onPress={() => handleSelected(product)} key={index}>
+                                        <View >
                                             <Image source={{uri: product.image}}
                                             style={styles.imageProductosDestacados}
                                             />
                                         </View>
-                                    </TouchableWithoutFeedback>
+                                    </TouchableOpacity>
                                 )
                             }
                         })
                     }
                     
                     </View>
-                    <TouchableWithoutFeedback onPress={() => {
+                    <TouchableOpacity onPress={() => {
                         navigation.navigate('AllProducts')
                     }}>
                         <Text style= {styles.textVerProductos}>Todos los productos</Text>
-                    </TouchableWithoutFeedback>
+                    </TouchableOpacity>
                 </Card>
                 {/* Card Redes Sociales */}
                 <Card>

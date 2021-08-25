@@ -77,7 +77,7 @@ const TabNvigator = () => {
                                 ? <Image style={styles.imagen} source={{uri: imageURL}}/>
                                 : <Ionicons name="person"  color={focused ? Colors.iconsfocused :Colors.icons } size={24}/>
                             }
-                            {/* <Ionicons name="person"  color={focused ? Colors.iconsfocused :Colors.icons } size={24}/> */}
+                            
                             <Text style={ focused ? styles.textFocused : styles.text}>Mi Perfil</Text>
                         </View>
                     )

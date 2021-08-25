@@ -1,9 +1,9 @@
 import React, {useReducer, useCallback, useState, useEffect} from 'react';
 import { StyleSheet, View, Text, Button, KeyboardAvoidingView, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { signup, login } from '../../store/actions/auth.action';
-import Input from '../../components/Input';
-import Colors from '../../constants/colors';
+import { signup } from '../store/actions/auth.action'
+import Input from '../components/Input';
+import Colors from '../constants/colors';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 const formReducer = (state, action) => {
@@ -36,7 +36,7 @@ const formReducer = (state, action) => {
   
 
 
-const AuthScreen = ({navigation}) => {
+const Registrarse = ({navigation}) => {
     const dispatch = useDispatch();
     const [error, setError] = useState(null);
 
@@ -67,20 +67,22 @@ const AuthScreen = ({navigation}) => {
       }, [dispatchFormState]);
 
       
-
-      const onLoginHandler = async () => {
-       
-        try {
-          await dispatch(login(formState.inputValues.email, formState.inputValues.password));
-        } catch (err) {
-          setError(err.message);
-        }
+      const onLoginHandler = () => {
+          navigation.navigate('Login')
       }
 
-      
+      const onSignupHandler = async () => {
+        
+        try {
+          await dispatch(signup(formState.inputValues.email, formState.inputValues.password));
+          Alert.alert("Registro completo", '' [{ text: 'Ok' }]);
+          navigation.navigate('Login')
+        } catch (err) {
 
-      const onSignupHandler = () => {
-        navigation.navigate('SignUp')
+          setError(err.message);
+        }
+        
+        
       }
 
 
@@ -120,10 +122,10 @@ const AuthScreen = ({navigation}) => {
                 </View>
                 <View style={styles.footer}>
                 <View style={styles.button}>
-                    <Button title="ACCEDER" color={Colors.buttonPrimary} onPress={onLoginHandler} />
+                    <Button title="REGISTRARSE" color={Colors.buttonPrimary}  onPress={onSignupHandler} />
                 </View>
                 <View style={styles.button}>
-                    <Button title="REGISTRARSE" color={Colors.buttonSecondary}  onPress={onSignupHandler} />
+                    <Button title="TENGO CUENTA" color={Colors.buttonSecondary} onPress={onLoginHandler} />
                 </View>
                 </View>
             </View>   
@@ -153,4 +155,4 @@ const styles= StyleSheet.create({
       },
 });
 
-export default AuthScreen;
+export default Registrarse;

@@ -11,7 +11,7 @@ const AuthReducer = (state = INITIAL_STATE, action) => {
     case SIGNUP:
       return {
         ...state,
-        token: action.token,
+        token: null,
         user: action.user,
       };
     case LOGIN:

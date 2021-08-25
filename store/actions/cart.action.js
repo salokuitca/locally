@@ -4,6 +4,7 @@ export const RESTAR_CANTIDAD='RESTAR_CANTIDAD'
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const DELETE_CART = 'DELETE_CART';
 export const CONFIRM_CART = 'CONFIRM_CART';
+export const RECUPERAR_CART = 'RECUPERAR_CART'
 import { DB_API_URL } from "@env";
 
 export const addItem = item => ({

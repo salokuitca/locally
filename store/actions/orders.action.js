@@ -8,7 +8,7 @@ const orderByUserID = (data, user) => {
     // Convertir el objeto a un arreglo
     Object.keys(data).forEach(key => items.push({ id: key, ...data[key] }));
     // Filtrar el arreglo (solo las ordenes del usuario)
-    console.log (items)
+    
     return items.filter(item => item.user === user);
   }
 

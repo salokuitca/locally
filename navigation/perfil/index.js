@@ -5,6 +5,7 @@ import PerfilContainer from '../../screens/PerfilContainer';
 import Colors from '../../constants/colors';
 import FotoPerfil from '../../screens/FotoPerfil';
 import MisPedidos from '../../screens/MisPedidos';
+import Favoritos from '../../screens/Favoritos';
 
 
 
@@ -33,6 +34,11 @@ const PerfilNavigator = () => {
                 name="Foto de Perfil"
                 component = {FotoPerfil}
                 options={{title: 'Foto de Perfil'}}
+            />
+            <PerfilStack.Screen 
+                name="Favoritos"
+                component = {Favoritos}
+                options={{title: 'Favoritos'}}
             />
             <PerfilStack.Screen 
                 name="Pedidos"

@@ -13,18 +13,32 @@ const PerfilContainer = ({navigation}) => {
     const handleMisPedidos = () => {
         navigation.navigate ('Pedidos')
     }
+    const handleFavoritos = () => {
+        navigation.navigate ('Favoritos')
+    }
     return (
         <>
         <View style={styles.container}>
-            <View style={styles.superior}>
-                <Card style={styles.cardFavoritos}>
+            
+                <Card style={styles.cardPedidos}>
+                <TouchableOpacity onPress={() => handleFavoritos()} style={styles.touchable}>
                     <View>
                     <Ionicons name="ios-heart" size={50} color={Colors.buttonPrimary} />
                     </View>
                     <Text style={styles.text}>Favoritos</Text>
+                </TouchableOpacity>
                 </Card>
                
-                <Card style={styles.cardFavoritos}>
+                <Card style={styles.cardPedidos}>
+                    <TouchableOpacity onPress={() => handleMisPedidos()} style={styles.touchable}>
+                        <View>
+                            <MaterialIcons name="shopping-bag" size={50} color={Colors.tabBar} />
+                        </View>
+                        <Text style={styles.text}>Mis Pedidos</Text>
+                    </TouchableOpacity>
+                </Card>
+                
+                <Card style={styles.cardPedidos}>
                     <TouchableOpacity onPress={handleConfiguracion} style={styles.touchable}>
                         <View>
                             {/* <Ionicons name="settings-sharp" size={50} color={Colors.tabBar} /> */}
@@ -35,24 +49,10 @@ const PerfilContainer = ({navigation}) => {
                 </Card>
                 
                 
-            </View>
+           
                 
-                <Card style={styles.cardPedidos}>
-                    <TouchableOpacity onPress={() => handleMisPedidos()}>
-                        <View>
-                            <MaterialIcons name="shopping-bag" size={50} color={Colors.tabBar} />
-                        </View>
-                        <Text style={styles.text}>Mis Pedidos</Text>
-                    </TouchableOpacity>
-                </Card>
                 
             
-                <Card style={styles.cardPedidos}>
-                    <View>
-                        <Ionicons name="chatbox-ellipses" size={50} color={Colors.tabBar} />
-                    </View>
-                    <Text style={styles.text}>Mis Mensajes</Text>
-                </Card>
             
         </View>
         </>
@@ -69,11 +69,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         height: '30%'
     },
-    cardFavoritos: {
-        width: '42%',
-        justifyContent:'center',
-        alignItems : 'center'
-    },
+    
     touchable: {
         justifyContent:'center',
         alignItems : 'center'

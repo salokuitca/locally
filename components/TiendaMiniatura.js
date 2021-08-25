@@ -47,12 +47,13 @@ const TiendaMiniatura = ({item, onSelected}) => {
                             ? <Ionicons name="heart" size={30} color="red" />
                             : <Ionicons name="heart-outline" size={30} color="black" />
                         }
+                        <View>
+                        <Text style={styles.textDistance}>{item.distance}</Text>
+                    </View>
                         
                     </TouchableOpacity>
                     
-                    <View>
-                        <Text style={styles.textDistance}>{item.distance}</Text>
-                    </View>
+                    
                 </View>
             </View>
             </TouchableOpacity>
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textContainer: {
-        width: 200
+        width: 180
     },
     textName: {
         fontFamily: 'roboto-medium',

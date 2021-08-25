@@ -36,7 +36,11 @@ const MapNavigator = () => {
                 component={ItemDetailContainer}
                 options = {({route}) => ({title: route.params.name})}
             />
-            <MapStack.Screen name="AllProducts" component={AllProducts}/>
+            <MapStack.Screen 
+                name="AllProducts" 
+                component={AllProducts}
+                options = {{title: 'Todos los productos'}}
+            />
                   
         </MapStack.Navigator>
     )

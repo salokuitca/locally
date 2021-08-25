@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View, Image, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Image, Text, TouchableOpacity, ScrollView} from 'react-native';
 import Card from './Card';
 import { useSelector, useDispatch } from 'react-redux';
 import { filterProduct, selectProduct } from '../store/actions/products.action';
@@ -25,33 +25,37 @@ const AllProducts = ({navigation}) => {
     return (
         <>
         {/* Card contenedora de la pantalla */}
-        <Card >
-            {/* Encabezado de la card */}
-            <View style={styles.encabezadoCard}>
-                <Text style={styles.textTitulo}>Todos los productos</Text>
-                <TouchableOpacity onPress={() => handleClose()}>
-                    <Image source={require('../assets/images/iconClose.png')} style={styles.iconoClose}/>
-                </TouchableOpacity>
-            </View>
-            {/* Imágenes de los productos */}
-            <View style={styles.container}>
-                {
-                    product.map ((product, index) => {
-                        return (
-                            <TouchableOpacity style={styles.imageProductosContainer} onPress={()=>{handleSelected(product)}} key={index}>
-                                <View>
-                                    <Image source={{uri: product.image}}
-                                    style={styles.imageProductos}
-                                    />
-                                </View>
-                            </TouchableOpacity>
-                        )
-                    })
-                }
+        <ScrollView>
+            <Card >
+            
+                {/* Encabezado de la card */}
+                <View style={styles.encabezadoCard}>
+                    <Text style={styles.textTitulo}>Todos los productos</Text>
+                    <TouchableOpacity onPress={() => handleClose()}>
+                        <Image source={require('../assets/images/iconClose.png')} style={styles.iconoClose}/>
+                    </TouchableOpacity>
+                </View>
+                {/* Imágenes de los productos */}
+                <View style={styles.container}>
+                    {
+                        product.map ((product, index) => {
+                            return (
+                                <TouchableOpacity style={styles.imageProductosContainer} onPress={()=>{handleSelected(product)}} key={index}>
+                                    <View>
+                                        <Image source={{uri: product.image}}
+                                        style={styles.imageProductos}
+                                        />
+                                    </View>
+                                </TouchableOpacity>
+                            )
+                        })
+                    }
+                    
+                    
+                </View>
                 
-                
-            </View>
-        </Card>
+            </Card>
+        </ScrollView>
         </>
     )
 }

@@ -16,12 +16,14 @@ const FotoReducer = (state = initialState, action) => {
                 ...state,
                 foto: newFoto,
             };
-        case LOAD_FOTO: 
-        const position = action.foto.length;
-        return {
-            ...state,
-            foto: action.foto[position-1].image,
+        case LOAD_FOTO:     
+        if (action.foto[action.foto.length-1] !== undefined) {
+            return {
+                ...state,
+                foto: action.foto[action.foto.length-1].image,
+            }
         }
+       
         default:
             return state;
     }
