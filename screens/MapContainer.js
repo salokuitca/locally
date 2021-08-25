@@ -1,30 +1,21 @@
 import React,  { useState, useEffect }  from 'react';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-import {Svg, Image as ImageSvg} from 'react-native-svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectTienda, likeTienda } from '../store/actions/tiendas.action';
-import { View,
+import { 
     Animated,
-    Text,
-    Image,
     Alert,
     StyleSheet, Dimensions} from 'react-native';
-    import * as Location from 'expo-location';
-    import Colors from '../constants/colors';
-    import MapPreview from '../components/MapPreview';
+  import * as Location from 'expo-location';
+    
 import TiendaMiniatura from '../components/TiendaMiniatura';
 import Card from '../components/Card';
-import { render } from 'react-dom';
+
 
     
     
 
 const MapContainer = ({navigation}) => {
-  const [isFetching, setIsFetching] = useState(false);
-  const [pickedLocation, setPickedLocation] = useState();
-
-  
-
   const dispatch = useDispatch ();
   const tiendas = useSelector (state => state.tiendas.listTiendas);
   const likeSelected = useSelector (state => state.tiendas.likeSelected);
@@ -130,35 +121,11 @@ const MapContainer = ({navigation}) => {
       }
     })();
   }, []);
-
-  const getLocationHandler = async () => {
-    try {
-      setIsFetching(true);
-      const location = await Location.getCurrentPositionAsync({
-        timeout: 5000,
-      });
-      console.log(location);
-      setPickedLocation({
-        lat: location.coords.latitude,
-        lng: location.coords.longitude,
-      });
-    } catch(err) {
-      Alert.alert(
-        'No se pudo obtener la localización',
-        'Por favor intente nuevamente.',
-        [{ text: 'Ok' }],
-      )
-    } finally {
-      setIsFetching(false);
-    }
-  };
-
-  const pickLocationHandler = () => navigation.push('Map');
     return (
         <>
         <MapView
           ref= {_map}
-          provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+          provider={PROVIDER_GOOGLE} 
           style={styles.map}
           region={mapState.region}
         >

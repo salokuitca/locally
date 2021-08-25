@@ -1,11 +1,9 @@
 import React from 'react';
-import { Platform } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MapContainer from '../../screens/MapContainer';
 import TiendaDetailContainer from '../../screens/TiendaDetailContainer';
 import ItemDetailContainer from '../../screens/ItemDetailContainer';
 import AllProducts from '../../components/AllProducts';
-import CartContainer from '../../screens/CartContainer';
 import Colors from '../../constants/colors';
 
 const MapStack = createStackNavigator();

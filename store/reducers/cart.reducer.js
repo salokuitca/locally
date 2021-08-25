@@ -31,23 +31,6 @@ const CartReducer = (state = INITIAL_STATE, action) => {
               if (item.id === action.item.id) item.quantity ++;
               return item;
             })
-            // const indexItem = state.items.findIndex (item => item.id === action.item.id);
-
-            // if (indexItem === -1) {
-            //   const item = {...action.item, quantity: 1};
-            //   const updated = state.items.concat(item);
-
-            //   return {
-            //     ...state,
-            //     items: updated,
-            //     total: sumTotal(updated)
-            //   }
-            // } 
-
-            // const updated = state.items.map(item => {
-            //   if (item.id === action.item.id) item.quantity ++;
-            //   return item;
-            // })
 
             return {
               ...state,

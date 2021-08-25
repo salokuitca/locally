@@ -1,9 +1,10 @@
 import React, {useReducer, useCallback, useState, useEffect} from 'react';
 import { StyleSheet, View, Text, Button, KeyboardAvoidingView, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { signup, login } from '../../store/actions/auth.action';
+import { login } from '../../store/actions/auth.action';
 import Input from '../../components/Input';
 import Colors from '../../constants/colors';
+
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 const formReducer = (state, action) => {
@@ -40,11 +41,14 @@ const AuthScreen = ({navigation}) => {
     const dispatch = useDispatch();
     const [error, setError] = useState(null);
 
+
     useEffect(() => {
       if (error) {
         Alert.alert("Ha ocurrido un error", error, [{ text: 'Ok' }]);
       }
     }, [error]);
+
+
     const [formState, dispatchFormState] = useReducer(formReducer, {
         inputValues: {
           email: '',
@@ -56,6 +60,8 @@ const AuthScreen = ({navigation}) => {
         },
         formIsValid: false,
       });
+
+      
     
       const onInputChangeHandler = useCallback((inputIdentifier, inputValue, inputValidity) => {
         dispatchFormState({

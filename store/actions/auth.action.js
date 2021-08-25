@@ -24,25 +24,6 @@ export const signup = (email, password) => {
     });
 
     if (!response.ok) {
-      // const resData = await response.json();
-      // const errorCode = resData.error.message;
-      // const errorMessage = errorCode in errorMessages
-      //   ? errorMessages[errorCode]
-      //   : 'No se ha podido registrar';
-
-      // throw new Error(errorMessage);
-      
-        // const errorResponse = await response.json()
-        // const errorID = errorResponse.error.message
-
-        // const errorMessage = 'No se ha podido registrar'
-        // if (errorID ==='EMAIL_EXISTS') message= 'Este mail ya está registrado'
-        // throw new Error(message)
-        // const errorMessage = errorID in errorMessages
-        //   ? errorMessages = [errorID]
-        //   : 'No se ha podido registrar'
-
-        //   throw new Error(errorMessage)
         const resData = await response.json();
         const errorCode = resData.error.message;
         const errorMessage = errorCode in errorMessages

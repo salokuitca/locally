@@ -45,7 +45,7 @@ export const confirmCart = (payload, user) => {
                     user,
                 })
             })
-            // console.log(response)
+            
             dispatch({
                 type: CONFIRM_CART,
                 confirm: true,

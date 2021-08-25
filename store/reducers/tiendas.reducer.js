@@ -23,29 +23,19 @@ const TiendasReducer = (state= INITIAL_STATE, action) => {
             
             const tiendaIndexLike= state.listTiendas.findIndex (tienda => tienda.id === action.tiendaID);
             
-            // state.listTiendas[tiendaIndexLike].favourite=!state.listTiendas[tiendaIndexLike].favourite
+            
             const newTienda = state.listTiendas.map (tienda => {
                 if (tienda.id === state.listTiendas[tiendaIndexLike].id) {
                     tienda.favourite = !tienda.favourite
                 }
                 return tienda
             })
-            
-            // if (tiendaIndexLike === -1) {
-            //     const notLike= {...state.listTiendas[tiendaIndexLike], like: false}
-            //     return {
-            //         ...state,
-            //         likeSelected: notLike,
-            //     }
-            // }
-            // const opuestoLike = state.like;
-            // const itemLike = {...state.listTiendas[tiendaIndexLike], likeItem: !opuestoLike}            
+                       
             
             return {
                 ...state,
                 listTiendas: newTienda
-                // like: !opuestoLike,
-                // likeSelected: itemLike,
+                
                 
             }
         default:

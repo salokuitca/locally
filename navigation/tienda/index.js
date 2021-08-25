@@ -1,11 +1,9 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ItemListContainer from '../../screens/ItemListContainer';
 import TiendaDetailContainer from '../../screens/TiendaDetailContainer';
 import ItemDetailContainer from '../../screens/ItemDetailContainer';
 import AllProducts from '../../components/AllProducts';
-import CartContainer from '../../screens/CartContainer';
 import Colors from '../../constants/colors';
 
 const TiendaStack = createStackNavigator();
