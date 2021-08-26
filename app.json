@@ -18,6 +18,7 @@
       "**/*"
     ],
     "ios": {
+      
       "supportsTablet": true
     },
     "android": {
@@ -25,7 +26,18 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "locally.app.new_ID"
+      "package": "locally.app.new_ID",
+      "versionCode": 1,
+      "permissions": [
+          "CAMERA",
+          "ACCESS_FINE_LOCATION",
+          "WRITE_EXTERNAL_STORAGE"
+      ],
+      "config" : {
+        "googleMaps": {
+          "apiKey": "MAP_API_URL"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
